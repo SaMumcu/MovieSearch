@@ -19,6 +19,10 @@ class MovieDetailFragment : Fragment() {
     private lateinit var binding: MovieDetailFragmentBinding
     private val args by navArgs<MovieDetailFragmentArgs>()
 
+    companion object {
+        const val FRAGMENT_STATE = "FRAGMENT_STATE"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +35,21 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getMovieDetail(args.movieId)
+        savedInstanceState.let { bundle ->
+            if (bundle != null) {
+                parentFragmentManager.getFragment(bundle, FRAGMENT_STATE)
+            } else {
+                viewModel.getMovieDetail(args.movieId)
+            }
+        }
         binding.imageView2.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        parentFragmentManager.putFragment(outState, FRAGMENT_STATE, this)
     }
 
     private fun observeMovieDetailLiveData() {
