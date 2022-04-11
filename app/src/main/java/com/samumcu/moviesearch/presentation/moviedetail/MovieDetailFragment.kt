@@ -36,9 +36,9 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         savedInstanceState.let { bundle ->
-            if (bundle != null) {
+            bundle?.let {
                 parentFragmentManager.getFragment(bundle, FRAGMENT_STATE)
-            } else {
+            } ?: run {
                 viewModel.getMovieDetail(args.movieId)
             }
         }

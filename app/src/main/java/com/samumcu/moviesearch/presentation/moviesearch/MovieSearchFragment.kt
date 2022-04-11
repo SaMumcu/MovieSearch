@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samumcu.moviesearch.databinding.MovieSearchFragmentBinding
 import com.samumcu.moviesearch.presentation.moviesearch.adapter.ListAdapter
+import com.samumcu.moviesearch.utils.UIUtils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,8 +59,9 @@ class MovieSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.getFilmBTN.setOnClickListener {
+            hideKeyboard()
             viewModel.resetData()
-            viewModel.getMovies(binding.filmNameET.text.toString())
+            viewModel.getMovies(binding.filmNameET.text.trim().toString())
             showProgress()
         }
         binding.movieListRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
