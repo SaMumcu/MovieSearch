@@ -24,7 +24,8 @@ class MovieSearchFragment : Fragment() {
     private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = MovieSearchFragmentBinding.inflate(inflater, container, false)
@@ -36,24 +37,30 @@ class MovieSearchFragment : Fragment() {
     }
 
     private fun observeLiveDatas() {
-        viewModel.movieListDataLiveData.observe(viewLifecycleOwner, {
-            it?.Search?.let {
-                binding.movieListRV.visibility = View.VISIBLE
-                closeProgressBar()
-                closeAnimation()
-                listAdapter = ListAdapter(it)
-                binding.movieListRV.adapter = listAdapter
-            }
-        })
-        viewModel.animationLiveData.observe(viewLifecycleOwner, {
-            it?.let {
-                if (it) {
-                    showAnimation()
-                } else {
+        viewModel.movieListDataLiveData.observe(
+            viewLifecycleOwner,
+            {
+                it?.Search?.let {
+                    binding.movieListRV.visibility = View.VISIBLE
+                    closeProgressBar()
                     closeAnimation()
+                    listAdapter = ListAdapter(it)
+                    binding.movieListRV.adapter = listAdapter
                 }
             }
-        })
+        )
+        viewModel.animationLiveData.observe(
+            viewLifecycleOwner,
+            {
+                it?.let {
+                    if (it) {
+                        showAnimation()
+                    } else {
+                        closeAnimation()
+                    }
+                }
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
