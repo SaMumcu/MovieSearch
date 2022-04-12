@@ -8,5 +8,4 @@ class MovieDetailRepository @Inject constructor(
 ) {
     suspend fun getMovieDetail(movieID: String) =
         movieService.getMovieDetail(movieID)
-
 }

@@ -8,5 +8,4 @@ class MovieSearchRepository @Inject constructor(
 ) {
     suspend fun getSearchedMovie(movieName: String, pageIndex: Int) =
         movieService.getMovies(movieName, page = pageIndex)
-
 }

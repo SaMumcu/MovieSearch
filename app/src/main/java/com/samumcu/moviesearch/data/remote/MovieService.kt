@@ -25,5 +25,4 @@ interface MovieService {
         @Query("i") movieID: String,
         @Query("type") type: String = TYPE
     ): MovieDetailResponse
-
 }

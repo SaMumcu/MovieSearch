@@ -24,7 +24,8 @@ class MovieDetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = MovieDetailFragmentBinding.inflate(inflater, container, false)
@@ -53,23 +54,29 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun observeMovieDetailLiveData() {
-        viewModel.movieDetailLiveData.observe(viewLifecycleOwner, {
-            if (it != null) {
-                binding.movieDetail = it
-                it.Genre?.let { genres ->
-                    addGenreTags(genres)
+        viewModel.movieDetailLiveData.observe(
+            viewLifecycleOwner,
+            {
+                if (it != null) {
+                    binding.movieDetail = it
+                    it.Genre?.let { genres ->
+                        addGenreTags(genres)
+                    }
                 }
             }
-        })
-        viewModel.animationLiveData.observe(viewLifecycleOwner, {
-            it?.let {
-                if (it) {
-                    showAnimation()
-                } else {
-                    closeAnimation()
+        )
+        viewModel.animationLiveData.observe(
+            viewLifecycleOwner,
+            {
+                it?.let {
+                    if (it) {
+                        showAnimation()
+                    } else {
+                        closeAnimation()
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun showAnimation() {

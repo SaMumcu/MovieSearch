@@ -1,9 +1,9 @@
 # MovieSearch
 
 https://omdbapi.com used for searching and showing details about films. <br>
-You should use your own api key and to get it you can check this page http://omdbapi.com/apikey.aspx. <br>
+You should use your own API key and to get it you can check this page http://omdbapi.com/apikey.aspx. <br>
 After that, you should create a file with name apikey.properties in the project root directory. <br>
-You can put your api key here with OMDBAPI_KEY constant like OMDBAPI_KEY = "YOUR_API_KEY"
+You can put your API key here with OMDBAPI_KEY constant like OMDBAPI_KEY = "YOUR_API_KEY"
 
 ![Screen Shot 2022-02-28 at 11 14 46](https://user-images.githubusercontent.com/33746502/155948055-9a99573a-9a8a-4360-b4e7-9effde300bd8.png)
 
