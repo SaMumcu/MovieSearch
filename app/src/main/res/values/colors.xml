@@ -10,6 +10,7 @@
 
     <color name="gray_dark">#ADB5BD</color>
     <color name="transparent_gray">#80ADB5BD</color>
+    <color name="gray_light">#D3D3D3</color>
 
     <color name="white_transparent">#CCFFFFFF</color>
 
